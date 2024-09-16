@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+<!-- prettier-ignore -->
+{% block title %}Post Detail{% endblock %} 
+{% block content %}
+<div class="container mt-5">
+	<h1>{{post.title}}</h1>
+	<p>{{post.content}}</p>
+	<p><i>By {{post.user.full_name}} on {{post.created_time}}</i></p>
+	<div>
+		<form>
+			<a href="/users/{{post.user.id}}">
+				<button class="btn btn-outline-primary" type="button">Cancel</button>
+			</a>
+			<button
+				class="btn btn-primary"
+				formmethod="get"
+				formaction="/posts/{{post.id}}/edit"
+			>
+				Edit
+			</button>
+			<button
+				class="btn btn-danger"
+				formmethod="post"
+				formaction="/posts/{{post.id}}/delete"
+			>
+				Delete
+			</button>
+		</form>
+	</div>
+</div>
+{% endblock %}
